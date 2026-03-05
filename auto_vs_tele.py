@@ -1,8 +1,11 @@
 from pathlib import Path
 from datetime import datetime
 import json
+from colorama import init, Fore
 
 if __name__ == "__main__":
+    init(autoreset=True)
+    
     dir = Path(f"./logs/{datetime.today().year}")
     files = [f for f in dir.iterdir() if f.is_file()]
 
@@ -20,12 +23,14 @@ if __name__ == "__main__":
 
                     if(blue_auto > red_auto and match["winning_alliance"] == "blue"):
                         total_auto_tele_wins += 1
-                        print(f"[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
-                    if(red_auto > blue_auto and match["winning_alliance"] == "red"):
+                        print(f"{Fore.GREEN}[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
+                    elif(red_auto > blue_auto and match["winning_alliance"] == "red"):
                         total_auto_tele_wins += 1
-                        print(f"[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
+                        print(f"{Fore.GREEN}[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
+                    else:
+                         print(f"{Fore.RED}[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
 
                     total_matches += 1
 
-    print(total_auto_tele_wins / total_matches)
+    print(f'\nAuto to Match Win: {((total_auto_tele_wins / total_matches) * 100):.2f}%')
 
