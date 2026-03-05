@@ -20,10 +20,10 @@ if __name__ == "__main__":
 
                     if(blue_auto > red_auto and match["winning_alliance"] == "blue"):
                         total_auto_tele_wins += 1
-                        print("blue")
+                        print(f"[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
                     if(red_auto > blue_auto and match["winning_alliance"] == "red"):
                         total_auto_tele_wins += 1
-                        print("red")
+                        print(f"[{match["key"]}] Blue Auto: {blue_auto}, Red Auto: {red_auto}, Winner: {match["winning_alliance"]}")
 
                     total_matches += 1
 
