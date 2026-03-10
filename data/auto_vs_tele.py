@@ -1,5 +1,6 @@
-from colorama import init, Fore
 from lib.regional_data import read_local_regionals, wrap_match_data
+from colorama import init, Fore
+
 
 if __name__ == "__main__":
     init(autoreset=True)
@@ -14,7 +15,7 @@ if __name__ == "__main__":
             match = wrap_match_data(match)
 
             if(match.is_completed):
-                
+
                 blue_auto = match.score_breakdown.blue.total_auto_points
                 red_auto = match.score_breakdown.red.total_auto_points
 
