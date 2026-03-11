@@ -1,3 +1,4 @@
 .DS_Store
 logs/
 tba_key.txt
+__pycache__/
