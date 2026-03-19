@@ -1,4 +1,4 @@
-from lib.regional_data import read_local_regionals, wrap_match_data
+from regional_data import read_local_regionals, wrap_match_data
 from colorama import init, Fore
 
 

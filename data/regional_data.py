@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from datetime import datetime
 from pathlib import Path
-from .frc_match import FRCMatch
+from frc_match import FRCMatch
 import tbapy
 import json
 
@@ -10,7 +10,10 @@ def wrap_match_data(json_dict: dict) -> FRCMatch:
 
 def fetch_current_regionals():
     auth = ''
-    with open(f"{__get_local_path()}tba_key.txt", "r") as f:
+    current_file_path = Path(__file__).parent.resolve()
+    logs_dir = current_file_path.parent
+
+    with open(f"{logs_dir}/tba_key.txt", "r") as f:
         auth = f.readline()
 
     tba = tbapy.TBA(auth)
@@ -26,12 +29,12 @@ def fetch_current_regionals():
         if start + timedelta(days=1) <= datetime.today() and event['event_type_string'] == "Regional":
             active_events.append(event['event_code'])
 
-    log_dir = Path(f'{__get_local_path()}{datetime.today().year}')
+    log_dir = Path(f'{__get_local_path()}')
     log_dir.mkdir(parents=True, exist_ok=True)
         
     for event in active_events:
         print(f'Logging [{event}]...')
-        with open(f'{__get_local_path()}{datetime.today().year}/{event}.json', 'w') as f:
+        with open(f'{__get_local_path()}/{event}.json', 'w') as f:
             matches = tba.event_matches(str(datetime.today().year) + event, simple=False)
             json.dump(matches, f, indent=4)
 
@@ -41,7 +44,7 @@ def __load_local_regionals():
 
 def __get_local_path():
     current_file_path = Path(__file__).parent.resolve()
-    logs_dir = current_file_path.parent.parent / "logs" / "2026"
+    logs_dir = current_file_path.parent / "logs" / "2026"
 
     return logs_dir
 

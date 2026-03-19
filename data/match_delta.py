@@ -1,7 +1,6 @@
-from lib.regional_data import read_local_regionals, wrap_match_data
+from regional_data import read_local_regionals, wrap_match_data
 import matplotlib.pyplot as plt
 from collections import defaultdict
-
 
 if __name__ == '__main__':
 
