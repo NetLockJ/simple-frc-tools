@@ -31,3 +31,4 @@ if __name__ == "__main__":
                 total_matches += 1
 
 print(f'\nAuto to Match Win: {((total_auto_tele_wins / total_matches) * 100):.2f}%')
+print(f'{total_auto_tele_wins}/{total_matches}')

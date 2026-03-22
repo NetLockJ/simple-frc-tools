@@ -26,7 +26,7 @@ def fetch_current_regionals():
         end =  datetime.strptime(event['end_date'], "%Y-%m-%d")
 
         # Has event started, past practice day, and is a regional?
-        if start + timedelta(days=1) <= datetime.today() and event['event_type_string'] == "Regional":
+        if start + timedelta(days=1) <= datetime.today() and event['event_type_string'] in ["Regional", "District"]:
             active_events.append(event['event_code'])
 
     log_dir = Path(f'{__get_local_path()}')

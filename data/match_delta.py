@@ -14,17 +14,19 @@ if __name__ == '__main__':
         if(match.is_completed):
             point_deltas[abs(match.score_delta)] += 1
 
-    print(point_deltas)
+    # print(point_deltas)
 
     total_sum = sum(point_deltas.values())
 
-    bins = list(range(0, 600, 50))
-    labels = [f'{i}-{i+49}' for i in bins[:-1]]
+    bin_size = 30
+
+    bins = list(range(0, 600, bin_size))
+    labels = [f'{i}-{i+bin_size - 1}' for i in bins[:-1]]
     counts = [0] * len(labels)
 
     # Group data into bins
     for val, count in point_deltas.items():
-        idx = val // 50
+        idx = val // bin_size
         if idx < len(counts):
             counts[idx] += count
 

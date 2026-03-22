@@ -25,3 +25,4 @@ if __name__ == "__main__":
             total_matches += 1
 
     print(f'\nClimb RP Percentage: {((total_climb_rp / total_matches) * 100):.2f}%')
+    print(f'{total_climb_rp}/{total_matches}')
